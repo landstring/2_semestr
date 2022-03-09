@@ -132,9 +132,19 @@ int main()
 	if (fout.is_open())
 	{
 		for (int i = 0; i < v.size(); i++) {
-			fout << v[i].Surname << " " << v[i].DateOfBirth.dd << '.' << v[i].DateOfBirth.mm << '.' << v[i].DateOfBirth.yy << ' ' << v[i].Position << ' ' << v[i].exp << ' ' << v[i].Salary << endl;
+			fout << v[i].Surname << ';';
+			fout << v[i].Position << ';';
+			if (v[i].DateOfBirth.dd < 10) {
+				fout << '0';
+			}
+			fout << v[i].DateOfBirth.dd << '.';
+			if (v[i].DateOfBirth.mm < 10) {
+				fout << '0';
+			}
+			fout << v[i].DateOfBirth.mm << '.';
+			fout << v[i].DateOfBirth.yy << ';' << v[i].exp << ';' << v[i].Salary << ';' << endl;
 		}
-	}	
+	}
 	fout.close();
 
 }
