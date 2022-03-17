@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-int num_lines(string file_name) { //ïîäñ÷¸ò ñòðîê â ìàññèâå
+int num_lines(string file_name) { //подсчёт строк в массиве
 	ifstream file(file_name);
 	string line;
 	int result = 0;
@@ -16,7 +16,7 @@ int num_lines(string file_name) { //ïîäñ÷¸ò ñòðîê â ìàññèâå
 	return result;
 }
 
-int** import_from_file(string file_name) { //èìïîðò ìàññèâà èç ôàéëà
+int** import_from_file(string file_name) { //импорт массива из файла
 	int n = num_lines(file_name);
 	ifstream file(file_name);
 	int** result = new int* [n];
@@ -115,15 +115,15 @@ int** gapSort_start(int** &mas, int n) {
 
 int main()
 {
-	int size = num_lines("input.txt"); //n-ìåðíîñòü 
-	int** array = new int* [size]; //èíèöèàëèçàöèÿ ìàññèâà 
-	array = import_from_file("input.txt"); //ìàññèâ, èìïîðòèðîâàííûé èç ôàéëà
+	int size = num_lines("input.txt"); //n-мерность 
+	int** array = new int* [size]; //инициализация массива 
+	array = import_from_file("input.txt"); //массив, импортированный из файла
 
-	array = gapSort_start(array, size); //ïðèìåíåíèå ñîðòèðîâêè
+	array = gapSort_start(array, size); //применение сортировки
 
 	output_to_file("output.txt", array, size);
 
-	for (int i = 0; i < size; i++) { // óäàëåíèå äèíàìè÷åñêîãî ìàññèâà èç ïàìÿòè
+	for (int i = 0; i < size; i++) { //удаление динамического массива из памяти
 		delete[] array[i];
 	}
 	delete[] array;
