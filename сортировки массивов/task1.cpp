@@ -3,6 +3,7 @@
 #include <string>
 using namespace std; 
 
+
 int num_lines(string file_name) { //подсчёт строк в массиве
 	ifstream file(file_name);
 	string line;

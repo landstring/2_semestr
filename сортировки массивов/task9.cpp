@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-int num_lines(string file_name) { //подсчёт строк в массиве
+int num_lines(string file_name) { //РїРѕРґСЃС‡С‘С‚ СЃС‚СЂРѕРє РІ РјР°СЃСЃРёРІРµ
 	ifstream file(file_name);
 	string line;
 	int result = 0;
@@ -16,7 +16,7 @@ int num_lines(string file_name) { //подсчёт строк в массиве
 	return result;
 }
 
-int** import_from_file(string file_name) { //импорт массива из файла
+int** import_from_file(string file_name) { //РёРјРїРѕСЂС‚ РјР°СЃСЃРёРІР° РёР· С„Р°Р№Р»Р°
 	int n = num_lines(file_name);
 	ifstream file(file_name);
 	int** result = new int* [n];
@@ -68,7 +68,7 @@ void output_to_file(string file_name, int** arr, int n) {
 	file.close();
 }
 
-int* gapSort(int* l, int n) {
+int* gapSort(int* &l, int n) {
 	int gap = (1.0 * n) / 1.247;
 	if (gap < 1) {
 		gap = 1;
@@ -92,20 +92,20 @@ int* gapSort(int* l, int n) {
 
 }
 
-int** gapSort_start(int** mas, int n) {
+int** gapSort_start(int** &mas, int n) {
 	for (int col = 0; col < n; col++) {
 		if (col % 3 == 2) {
 			int* a = new int[n];
-			for (int i = 0; i < n; i++) { //взяли столбец
+			for (int i = 0; i < n; i++) { //ГўГ§ГїГ«ГЁ Г±ГІГ®Г«ГЎГҐГ¶
 				a[i] = mas[i][col];
 			}
 
-			a = gapSort(a, n); //отсортировали столбец 
+			a = gapSort(a, n); //Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ Г«ГЁ Г±ГІГ®Г«ГЎГҐГ¶ 
 
-			for (int i = 0; i < n; i++) { //записали отсортированный столбец вместо исходного в массив 
+			for (int i = 0; i < n; i++) { //Г§Г ГЇГЁГ±Г Г«ГЁ Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ Г­Г­Г»Г© Г±ГІГ®Г«ГЎГҐГ¶ ГўГ¬ГҐГ±ГІГ® ГЁГ±ГµГ®Г¤Г­Г®ГЈГ® Гў Г¬Г Г±Г±ГЁГў 
 				mas[i][col] = a[i];
 			}
-			delete[] a; //удалили промежуточный столбец из памяти
+			delete[] a; //ГіГ¤Г Г«ГЁГ«ГЁ ГЇГ°Г®Г¬ГҐГ¦ГіГІГ®Г·Г­Г»Г© Г±ГІГ®Г«ГЎГҐГ¶ ГЁГ§ ГЇГ Г¬ГїГІГЁ
 		}
 	}
 	return mas;
@@ -115,15 +115,15 @@ int** gapSort_start(int** mas, int n) {
 
 int main()
 {
-	int size = num_lines("input.txt"); //n-мерность 
-	int** array = new int* [size]; //инициализация массива 
-	array = import_from_file("input.txt"); //массив, импортированный из файла
+	int size = num_lines("input.txt"); //n-РјРµСЂРЅРѕСЃС‚СЊ 
+	int** array = new int* [size]; //РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РјР°СЃСЃРёРІР° 
+	array = import_from_file("input.txt"); //РјР°СЃСЃРёРІ, РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РёР· С„Р°Р№Р»Р°
 
-	array = gapSort_start(array, size); //применение сортировки
+	array = gapSort_start(array, size); //РїСЂРёРјРµРЅРµРЅРёРµ СЃРѕСЂС‚РёСЂРѕРІРєРё
 
 	output_to_file("output.txt", array, size);
 
-	for (int i = 0; i < size; i++) { // удаление динамического массива из памяти
+	for (int i = 0; i < size; i++) { //СѓРґР°Р»РµРЅРёРµ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ РјР°СЃСЃРёРІР° РёР· РїР°РјСЏС‚Рё
 		delete[] array[i];
 	}
 	delete[] array;
