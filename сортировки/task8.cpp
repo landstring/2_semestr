@@ -29,9 +29,9 @@ vector<people> mergeSort(vector<people> l) {
 		lefthalf = mergeSort(lefthalf);
 		righthalf = mergeSort(righthalf);
 
-		unsigned i = 0;
-		unsigned j = 0;
-		unsigned k = 0;
+		int i = 0;
+		int j = 0;
+		int k = 0;
 		while (i < lefthalf.size() && j < righthalf.size()) {
 			if (lefthalf[i].Salary < righthalf[j].Salary || (lefthalf[i].Salary == righthalf[j].Salary && lefthalf[i].DateOfBirth.yy < righthalf[j].DateOfBirth.yy)) {
 				l[k] = lefthalf[i];
