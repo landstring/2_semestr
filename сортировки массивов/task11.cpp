@@ -81,7 +81,7 @@ int* bubbleSort(int* d, int n) {
 	return d;
 }
 int** bubbleSort_start(int** mas, int n) {
-	
+
 	for (int i = 1; i < n; i++) {
 		int* a = new int[i + 1];
 		for (int j = 0; j <= i; j++) {
@@ -96,21 +96,23 @@ int** bubbleSort_start(int** mas, int n) {
 		delete[] a;
 	}
 
-	for (int i = 1; i < n; i++) {
-		int* a = new int[n - i];
+	for (int j = 1; j < n - 1; j++) {
+		int* a = new int[n - j];
 		int k = 0;
-		for (int j = i; j < n; j++){
-			a[k] = mas[n - j][j];
+		for (int i = n - 1; i >= j; i--) {
+			a[k] = mas[i][k + j];
 			k++;
 		}
 
-		a = bubbleSort(a, n - i);
+		a = bubbleSort(a, n - j);
 
+		
 		k = 0;
-		for (int j = i; j < n; j++) {
-			mas[n - j][j] = a[k];
+		for (int i = n - 1; i >= j; i--) {
+			mas[i][k + j] = a[k];
 			k++;
 		}
+		delete[] a;
 	}
 	return mas;
 }
