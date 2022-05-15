@@ -84,10 +84,7 @@ int* gapSort(int* &l, int n) {
 		}
 		gap /= 1.247;
 	}
-	for (int i = 0; i < n; i++) {
-		cout << l[i] << ' ';
-	}
-	cout << endl;
+	
 	return l;
 
 }
