@@ -76,9 +76,9 @@ tree* Min(tree* tr) {//поиск min
 
 tree* Next(tree* tr, int x) {//поиск следующего
 	tree* n = find(tr, x);
-		if (n->right)//если есть правый ребенок
+	if (n->right)//если есть правый ребенок
 		return Min(n->right);//min по правой ветке
-	tree * y = n->parent; //родитель
+	tree* y = n->parent; //родитель
 	while (y && n == y->right) {//пока не дошли до корня или узел - правый ребенок
 		n = y;//идем вверх по дереву
 		y = y->parent;
@@ -88,7 +88,7 @@ tree* Next(tree* tr, int x) {//поиск следующего
 
 void Delete(tree*& tr, tree* v) {//удаление узла
 	tree* p = v->parent;
-	if (!p) tr = NULL; //дерево содержит один узел
+	if (!p && !v->right && !v->left) tr = NULL; //дерево содержит один узел
 	else if (!v->left && !v->right) {//если нет детей
 		if (p->left == v) //указатель у родителя меняем на NULL
 			p->left = NULL;
@@ -174,11 +174,11 @@ int main() {
 
 	int m;
 	cout << "multiplicity = "; cin >> m;
-	
+
 	task(tr, tr, m);
 
 	inorder(tr);
 	cout << endl;
-	
+
 
 }
