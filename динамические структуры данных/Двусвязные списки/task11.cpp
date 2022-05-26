@@ -119,7 +119,7 @@ public:
     }
 };
 
-int average(List& l, node* r) {
+float average(List& l, node* r) {
     r = r->next;
     int sum = 0; 
     int num = 0;
@@ -128,7 +128,7 @@ int average(List& l, node* r) {
         num++;
         r = r->next;
     }
-    return sum / num;
+    return (sum * 1.0) / num;
 }
 
 int main()

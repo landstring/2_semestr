@@ -26,7 +26,7 @@ int main() {
 		sort(Gr[i].begin(), Gr[i].end());
 		Gr[i].erase(unique(Gr[i].begin(), Gr[i].end()), Gr[i].end());
 	}
-
+	
 	set<int> st;
 	for (int i = 0; i < Gr.size(); i++) {
 		for (int j = 0; j < Gr[i].size(); j++) {
